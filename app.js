@@ -1,11 +1,15 @@
 const express = require('express');
+const path = require('path');
+
 const app = express();
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-  res.send('¡Hola, mundo!');
+  res.sendFile(path.join(__dirname, 'static', 'main.html'));
 });
 
-
-app.listen(8080, () => {
-  console.log("Server successfully running on port 8080");
+const PORT = 8080;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
