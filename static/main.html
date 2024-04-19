@@ -8,10 +8,17 @@
   <style>
     /* Estilos personalizados */
     .header {
-      background-color: #FFD700; /* Amarillo */
-      color: #FF0000; /* Rojo */
-      padding: 10px;
+      background: linear-gradient(to right, #FFD700, #FFFFFF); /* Degradado de amarillo a rojo a blanco */
+      color: black; /* Texto en blanco */
+      padding: 20px 0; /* Aumentamos el espacio superior e inferior */
       text-align: center;
+    }
+    
+    /* Ajuste para tamaños pequeños de pantalla */
+    @media (max-width: 576px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -21,7 +28,7 @@
     <div class="row">
       <div class="col">
         <div class="header">
-          <h1>PaquetesMexico</h1>
+          <h1 class="mb-0">PaquetesMexico</h1>
         </div>
       </div>
     </div>
