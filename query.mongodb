@@ -1,0 +1,18 @@
+use("logistica")
+db.createCollection("paquete")
+
+use("logistica")
+db.paquete.insertMany([
+    {
+        peso_gr: 1000,
+        altura_cm: 10,
+        ancho_cm: 15,
+        largo_cm: 25
+    },
+    {
+        peso_gr: 789,
+        altura_cm: 9,
+        ancho_cm: 12,
+        largo_cm: 22
+    }
+])
