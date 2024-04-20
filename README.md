@@ -25,7 +25,7 @@ $ npm install mongose
 # Run the app
 $ node app.js/nodemonapp.js
 ```
-## Credits
+## Tecnologías
 
 Este software utiliza las siguientes herramientas:
 
