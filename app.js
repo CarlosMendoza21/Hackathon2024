@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'main.html'));
 });
 
+const port = 27017;
 
 app.get('/paquete', async (req, res) => {
   try {
