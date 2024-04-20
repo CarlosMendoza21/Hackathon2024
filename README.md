@@ -1,5 +1,5 @@
 ## Proyecto
-Gestion y acomodo de paquetes de manera eficiente
+Packos
 
 ## ¿Qué es este proyecto?
 Es un proyecto que ayuda a la gestión y acomodo de paquetes para lo logística en el sector de transporte mexicano. Se utilizan códigos QR
