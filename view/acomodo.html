@@ -64,25 +64,29 @@
 <div>
     <h2>Nivel 1</h2>
 </div>
-<div id="containerLevel" class="container">
-    <div class="package"></div>
+<div id =""></div>
+<div class="containerLevel">
+    <div class="package">
 </div>
-<button id="agregar">Agregar Nivel</button>
+<button id="agregar">ola</button>
     
-<script>
-    var level = 1;
-
-    function addLevel() {
-        level += 1;
-        var newLevel = document.createElement("div");
-        newLevel.innerHTML = "<h2>Nivel " + level + "</h2>";
-        newLevel.className = "container";
-        document.body.appendChild(newLevel);
-    }
-
-    var botonAgregar = document.getElementById("agregar");
-    botonAgregar.addEventListener("click", addLevel);
-</script>
+</div>
 
 </body>
+<script>
+    var level= 0;
+    function addLevel() {
+            level+=1;
+            var newLevel = document.createElement("level");
+            newLevel.innerHTML = "Nivel "+ level;
+            var container = document.getElementById("containerLevel");
+            container.appendChild(newLevel);
+        }
+
+        var botonAgregar = document.getElementById("agregar");
+
+        botonAgregar.addEventListener("click", addLevel);
+    
+</script>
 </html>
+
