@@ -6,6 +6,7 @@ const { transportesModel,paqueteModel,enviosModel,pedidosModel } = require('./mo
 const uri = 'mongodb://localhost:27017/logistica';
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const qrcode = require('qrcode');
 
 
 app.use(express.json());
@@ -137,19 +138,26 @@ app.post('/nuevo-pedido', async (req, res) => {
   try {
       await client.connect();
       const db = client.db("logistica");
-      const result = await db.collection('pedido').insertOne({
+      const nuevoPedido = {
           nombre_cliente: nombreCliente,
           ciudad_destino: ciudadDestino,
           telefono: parseInt(telefono),
           tipo_paquete: tipoPaquete,
           estado: estado
-      });
+      };
+      const result = await db.collection('pedido').insertOne(nuevoPedido);
 
-      res.status(200).send({ message: 'Pedido creado con éxito', data: result.ops[0] });
+      // Generar el código QR con la información del pedido
+      const infoPedido = JSON.stringify(nuevoPedido);
+      const pedidoId = result.insertedId;
+      const qrPath = path.join(__dirname, 'qrCodes', `${pedidoId}.png`);
+      await qrcode.toFile(qrPath, infoPedido);
+
+      res.status(200).send({ message: 'Pedido creado con éxito y código QR generado', data: result.ops[0] });
   } catch (error) {
-      res.status(500).send({ message: 'Error al crear el pedido', error });
+      res.status(500).send({ message: 'Error al crear el pedido o generar el código QR', error });
   } finally {
-      await client.close();
+      // No cierres la conexión aquí si planeas reutilizarla en otras rutas
   }
 });
 
