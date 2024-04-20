@@ -1,0 +1,18 @@
+use("logistica")
+db.createCollection("transporte")
+
+use("logistica")
+db.transporte.insertMany([
+    {
+        peso_soportado_kg: 1000,
+        altura_maxima_m: 10,
+        ancho_maximo_m: 5,
+        largo_maximo_m: 25
+    },
+    {
+        peso_soportado_kg: 1500,
+        altura_maxima_m: 12,
+        ancho_maximo_m: 7,
+        largo_maximo_m: 22
+    }
+])
