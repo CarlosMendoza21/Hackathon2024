@@ -87,43 +87,43 @@
     <!-- Contenido -->
     <div>
         <h2>Tipo de peso</h2>
-        <div id="columnas">
+        <div id="columnasPeso">
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/93/93365.png">
             </div>
-            <button id="peso1">Peso 1</button>
+            <button id="peso1" data-peso="1">Peso 1</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/38/38464.png">
             </div>
-            <button id="peso4">Peso 4</button>
+            <button id="peso4" data-peso="50">Peso 4</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/166/166745.png">
             </div>
-            <button id="peso2">Peso 2</button>
+            <button id="peso2" data-peso="15">Peso 2</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/427/427560.png">
             </div>
-            <button id="peso5">Peso 5</button>
+            <button id="peso5" data-peso="70">Peso 5</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/5100/5100174.png">
             </div>
-            <button id="peso3">Peso 3</button>
+            <button id="peso3" data-peso="30">Peso 3</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/4971/4971976.png">
             </div>
-            <button id="peso6">Peso 6</button>
+            <button id="peso6" data-peso="90">Peso 6</button>
         </div>
     </div>
     
     <div>
         <h2>Tamaño de empaque</h2>
-        <div id="contenedorBotones">
+        <div id="contenedorBotonesTamanio">
             
         </div>
     </div>
 
     <script>
-        const buttons = document.querySelectorAll('button[id^="peso"]');
+        /*const buttons = document.querySelectorAll('button[id^="peso"]');
         const contenedorBotones = document.getElementById('contenedorBotones');
     
         buttons.forEach(button => {
@@ -137,7 +137,46 @@
                 nuevoBoton.textContent = 'Nuevo botón';
                 contenedorBotones.appendChild(nuevoBoton);
             });
+        });*/
+
+        // Definir los tipos de paquetes y sus restricciones
+        const paquetes = {
+            sobre: { peso_maximo_kg: 1, tamanio: { ancho_maximo_cm: 28, largo_maximo_cm: 35 } },
+            mini: { peso_maximo_kg: 15, tamanio: { ancho_maximo_cm: 30, largo_maximo_cm: 30, altura_maximo_cm: 30 } },
+            chico: { peso_maximo_kg: 30, tamanio: { ancho_maximo_cm: 40, largo_maximo_cm: 60, altura_maximo_cm: 30 } },
+            mediano: { peso_maximo_kg: 50, tamanio: { ancho_maximo_cm: 60, largo_maximo_cm: 80, altura_maximo_cm: 40 } },
+            grande: { peso_maximo_kg: 70, tamanio: { ancho_maximo_cm: 80, largo_maximo_cm: 100, altura_maximo_cm: 50 } },
+            extragrande: { peso_maximo_kg: 90, tamanio: { ancho_maximo_cm: 95, largo_maximo_cm: 110, altura_maximo_cm: 65 } }
+        };
+
+        // Función para actualizar los botones de tamaño disponibles
+        function actualizarTamanios(pesoSeleccionado) {
+            const contenedorTamanio = document.getElementById('contenedorBotonesTamanio');
+            contenedorTamanio.innerHTML = ''; // Limpiar el contenedor
+
+            // Filtrar los paquetes que cumplen con el peso seleccionado
+            const paquetesCompatibles = Object.keys(paquetes).filter(tipo => paquetes[tipo].peso_maximo_kg >= pesoSeleccionado);
+
+            // Crear y añadir botones para los paquetes compatibles
+            paquetesCompatibles.forEach(tipo => {
+                const botonTamanio = document.createElement('button');
+                botonTamanio.textContent = tipo;
+                botonTamanio.addEventListener('click', () => {
+                    // Aquí puedes añadir la lógica para manejar la selección de tamaño
+                });
+                contenedorTamanio.appendChild(botonTamanio);
+            });
+        }
+
+        // Evento de clic para los botones de peso
+        document.querySelectorAll('#columnasPeso button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Aquí puedes añadir la lógica para manejar la selección de peso
+                const pesoSeleccionado = parseFloat(button.dataset.peso); // Asumiendo que cada botón tiene un atributo data-peso con el peso máximo
+                actualizarTamanios(pesoSeleccionado);
+            });
         });
+
     </script>
     
 </body>

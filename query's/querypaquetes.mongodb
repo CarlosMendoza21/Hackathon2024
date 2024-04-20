@@ -51,5 +51,15 @@ db.paquete.insertMany([
             largo_maximo_cm: 100,
             altura_maximo_cm: 50
         }
+    },
+    {
+        tipo: "extragrande",
+        peso_maximo_kg: 90,
+        tamanio:
+        {
+            ancho_maximo_cm: 95,
+            largo_maximo_cm: 110,
+            altura_maximo_cm: 65
+        }
     }
 ])
