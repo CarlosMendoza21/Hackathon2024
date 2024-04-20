@@ -35,5 +35,6 @@ const transportesSchema = new mongoose.Schema({
 });
 
 module.exports = {
-  paqueteSchema
+  paqueteSchema,
+  transportesSchema
 }
