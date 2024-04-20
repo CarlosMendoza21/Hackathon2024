@@ -21,22 +21,22 @@
         }
 
         header {
-            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+            background-color: rgba(255, 255, 255, 0.8);
             color: #333;
             padding: 1.8rem;
             text-align: center;
-            font-size: 1.5rem; /* Aumento del tamaño del texto */
-            margin-bottom: 30px; /* Margen inferior para separación */
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+            font-size: 1.5rem;
+            margin-bottom: 30px; 
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
         }
 
         h1 {
             margin-top: 20px;
             text-align: center;
-            color: #333; /* Color del texto */
+            color: #333; 
         }
 
-        /* Estilos para el contenido principal */
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -61,14 +61,28 @@
 <header>
     <h1>Acomodo de paquetes</h1>
 </header>
-
-<div class="container">
-    <div class="package">
-        <!-- Aquí puedes añadir el contenido de tus paquetes -->
-    </div>
-    
+<div>
+    <h2>Nivel 1</h2>
 </div>
+<div id="containerLevel" class="container">
+    <div class="package"></div>
+</div>
+<button id="agregar">Agregar Nivel</button>
+    
+<script>
+    var level = 1;
+
+    function addLevel() {
+        level += 1;
+        var newLevel = document.createElement("div");
+        newLevel.innerHTML = "<h2>Nivel " + level + "</h2>";
+        newLevel.className = "container";
+        document.body.appendChild(newLevel);
+    }
+
+    var botonAgregar = document.getElementById("agregar");
+    botonAgregar.addEventListener("click", addLevel);
+</script>
 
 </body>
 </html>
-
