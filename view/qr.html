@@ -50,6 +50,11 @@
     <div class="container">
         <div id="my-qr-reader" style="width: 100%;"></div>
     </div>
+    <form id="qrForm" method="post" action="/procesar-qr">
+        <input type="hidden" id="qrData" name="qrData">
+        <button type="submit">Enviar Datos del QR</button>
+    </form>
+    
 
     <script src="https://unpkg.com/html5-qrcode"></script>
 
@@ -82,6 +87,23 @@
 
             htmlScanner.render(onScanSuccess);
         });
+
+        function onScanSuccess(decodeText, decodeResult){
+    if(decodeText !== lastResult){
+        ++countResults;
+        lastResult = decodeText;
+
+        // Convertir el texto decodificado a un objeto JSON
+        const qrData = JSON.parse(decodeText);
+
+        // Llenar el formulario con los datos del QR
+        document.getElementById('qrData').value = JSON.stringify(qrData);
+
+        // Opcional: Mostrar los datos del QR en la página
+        myqr.innerHTML = `Datos del QR: ${JSON.stringify(qrData)}`;
+    }
+}
+
     </script>
 </body>
 </html>

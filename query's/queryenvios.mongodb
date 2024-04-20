@@ -1,23 +1,14 @@
 use("logistica")
-db.createCollection("envio", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: ["transporte", "ciudad_origen", "ciudad_destino"],
-            properties: {
-                transporte: {
-                    bsonType: "objectId",
-                    description: "ID del transporte utilizado"
-                },
-                ciudad_origen: {
-                    bsonType: "string",
-                    description: "Ciudad de origen del envío"
-                },
-                ciudad_destino: {
-                    bsonType: "string",
-                    description: "Ciudad de destino del envío"
-                }
-            }
+db.createCollection("envio")
+
+use("logistica")
+db.envio.insertMany([
+    {
+        transporte: "transporte 1",
+        ciudad_destino: "Querétaro",
+        pedidos:
+        {
+            1: "6623b36d18865c1265d31c6e"
         }
     }
-})
+])

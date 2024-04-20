@@ -161,6 +161,34 @@ app.post('/nuevo-pedido', async (req, res) => {
   }
 });
 
+app.post('/procesar-qr', async (req, res) => {
+  const { _id, nombre_cliente, ciudad_destino, telefono, tipo_paquete, estado } = req.body;
+
+  try {
+      await client.connect();
+      const db = client.db("logistica");
+
+      // Buscar en la colección 'envio' por 'ciudad_destino'
+      const envio = await db.collection('envio').findOne({ ciudad_destino: ciudad_destino });
+
+      if (envio) {
+          // Si se encuentra un envío con la misma ciudad_destino, actualizar el documento
+          await db.collection('envio').updateOne(
+              { _id: envio._id },
+              { $push: { pedidos: _id } }
+          );
+
+          res.status(200).send({ message: 'Pedido asociado con éxito', envioId: envio._id });
+      } else {
+          res.status(404).send({ message: 'No se encontró un envío con la ciudad de destino especificada' });
+      }
+  } catch (error) {
+      res.status(500).send({ message: 'Error al procesar el QR', error });
+  } finally {
+      await client.close();
+  }
+});
+
 
 app.listen(process.env.PORT || 3001, () => {
   console.log("Server is running......");

@@ -4,18 +4,21 @@ db.createCollection("transporte")
 use("logistica")
 db.transporte.insertMany([
     {
+        nombre: "transporte 1",
         capacidad_cm3: 100000,
         ancho_max_cm: 100,
         largo_max_cm: 150,
         altura_max_cm: 80
     },
     {
+        nombre: "transporte 2",
         capacidad_cm3: 150000,
         ancho_max_cm: 120,
         largo_max_cm: 180,
         altura_max_cm: 100
     },
     {
+        nombre: "transporte 3",
         capacidad_cm3: 200000,
         ancho_max_cm: 150,
         largo_max_cm: 200,
