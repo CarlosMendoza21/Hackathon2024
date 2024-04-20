@@ -1,4 +1,4 @@
-function createQR(tipoPeso,tamano){
+export function hacerQr(tipoPeso,tamano){
   const QRCode = require('qrcode');
 
   QRCode.toFile('file.png', '{tipo: '+tipoPeso+', tamano: '+tamano+',}', {

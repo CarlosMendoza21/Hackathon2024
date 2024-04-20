@@ -135,12 +135,14 @@
             <div id="contenedorBotonesTamanio"></div>
         
         </div>
-        <button id="botonConfirmar"></button>
+        
+    <button id="botonConfirmar">Confirmar registro</button>
     
 </body>
 
 <script>
-         
+    
+
     /*const buttons = document.querySelectorAll('button[id^="peso"]');
     const contenedorBotones = document.getElementById('contenedorBotones');
 
@@ -155,9 +157,12 @@
             nuevoBoton.textContent = 'Nuevo botón';
             contenedorBotones.appendChild(nuevoBoton);
         });
+
     });*/
 
     // Definir los tipos de paquetes y sus restricciones
+
+
     const paquetes = {
         sobre: { peso_maximo_kg: 1, tamanio: { ancho_maximo_cm: 28, largo_maximo_cm: 35 } },
         mini: { peso_maximo_kg: 15, tamanio: { ancho_maximo_cm: 30, largo_maximo_cm: 30, altura_maximo_cm: 30 } },
@@ -191,6 +196,10 @@
             actualizarTamanios(pesoSeleccionado);
         });
     });
+
+
+    const Qrcode = require('./qr/create_qr');
+    document.getElementById('botonConfirmar').addEventListener('click', Qrcode.hacerQr("ola","bye"));
 
 </script>
 </html>
