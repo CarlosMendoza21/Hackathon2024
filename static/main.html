@@ -4,42 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interfaz PaquetesMexico</title>
+
+  <!-- Google fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    /* Estilos personalizados */
-    .header {
-      background: linear-gradient(to right, #FFD700, #FFFFFF); /* Degradado de amarillo a rojo a blanco */
-      color: black; /* Texto en blanco */
-      padding: 20px 0; /* Aumentamos el espacio superior e inferior */
-      text-align: center;
-    }
-    
-    /* Ajuste para tamaños pequeños de pantalla */
-    @media (max-width: 576px) {
-      .header h1 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
+  <!-- Header-->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: linear-gradient(to right, #FFCC00, #FFFFFF);">
+        <span class="navbar-brand mb-0 h1">Registro de Paquetes</span>
+    </nav>
+  </header> 
+  <!-- Contenido -->
+  <div class="container mt-5">
     <div class="row">
-      <div class="col">
-        <div class="header">
-          <h1 class="mb-0">PaquetesMexico</h1>
-        </div>
-      </div>
-    </div>
-    <!-- Contenido -->
-    <div class="row mt-5">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-8 offset-md-2"> 
         <div class="card">
           <div class="card-body">
-            <h2 class="text-center">Escanea un Paquete</h2>
+            <h2 class="text-center"></h2>
             <div class="text-center">
-              <button type="button" class="btn btn-primary btn-lg">Escanear</button>
+              <div class="container-fluid"> 
+                <div class="row align-items-start justify-content-center"> 
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 1</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 2</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 3</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 4</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 4</button>
+                  </div>
+                </div><br>
+              </div>
+              <div class="container-fluid"> <!-- Ajuste: Cambiado container a container-fluid para que ocupe el ancho completo -->
+                <div class="row align-items-start justify-content-center"> <!-- Ajuste: Alinea y justifica los elementos en el centro -->
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 1</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 2</button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-warning">Paquete 3</button>
+                  </div>
+                </div><br>
+              </div>          
             </div>
           </div>
         </div>
