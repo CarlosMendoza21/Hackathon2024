@@ -34,7 +34,49 @@ const transportesSchema = new mongoose.Schema({
   }
 });
 
+const pedidosSchema = new mongoose.Schema({
+  nombre_cliente:{
+    type: String,
+    required: true
+  },
+  ciudad_destino:{
+    type: String,
+    required: true
+  },
+  telefono:{
+    type: Number,
+    required: true
+  },
+  tipo_paquete:{
+    type: String,
+    required: true
+  },
+  estado:{
+    type: String,
+    required: true
+  }
+})
+
+const enviossSchema = new mongoose.Schema({
+  transporte:{
+    type: Object,
+    required: true
+  },
+  ciudad_origen:{
+    type: String,
+    required: true
+  },
+  ciudad_destino:{
+    type: String,
+    required: true
+  }
+})
+
+
+
 module.exports = {
   paqueteSchema,
-  transportesSchema
+  transportesSchema,
+  pedidosSchema,
+  enviossSchema
 }
