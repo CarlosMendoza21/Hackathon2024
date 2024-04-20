@@ -84,34 +84,34 @@
         </nav>
     </header> 
 
-   
+    <!-- Contenido -->
     <div>
         <h2>Tipo de peso</h2>
         <div id="columnas">
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/93/93365.png">
             </div>
-            <button id="buttonPeso">Peso 1</button>
+            <button id="peso1">Peso 1</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/38/38464.png">
             </div>
-            <button id="buttonPeso" >Peso 4</button>
+            <button id="peso4">Peso 4</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/166/166745.png">
             </div>
-            <button id="buttonPeso">Peso 2</button>
+            <button id="peso2">Peso 2</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/427/427560.png">
             </div>
-            <button id="buttonPeso" >Peso 5</button>
+            <button id="peso5">Peso 5</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/5100/5100174.png">
             </div>
-            <button id="buttonPeso">Peso 3</button>
+            <button id="peso3">Peso 3</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/4971/4971976.png">
             </div>
-            <button name="Peso" id="buttonPeso">Peso 6</button>
+            <button id="peso6">Peso 6</button>
         </div>
     </div>
     
@@ -122,34 +122,25 @@
         </div>
     </div>
 
-    <button id="agregarBoton">Agregar otro botón</button>
-
     <script>
-
-        const buttons = document.querySelectorAll('button[name="Peso"]');
-
-
+        const buttons = document.querySelectorAll('button[id^="peso"]');
+        const contenedorBotones = document.getElementById('contenedorBotones');
+    
         buttons.forEach(button => {
             button.addEventListener('click', () => {
- 
-                buttons.forEach(button => {
-                    button.classList.remove('active');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
                 });
                 button.classList.add('active');
+                const nuevoBoton = document.createElement('button');
+               if (condition) {
+                
+               }
+                nuevoBoton.textContent = 'Nuevo botón';
+                contenedorBotones.appendChild(nuevoBoton);
             });
         });
-
-        function agregarNuevoBoton() {
-            var nuevoBoton = document.createElement("button");
-            nuevoBoton.innerHTML = "¡Nuevo botón!";
-            nuevoBoton.setAttribute("class", "nuevoBotonClase");
-            var contenedor = document.getElementById("contenedorBotones");
-            contenedor.appendChild(nuevoBoton);
-        }
-
-        var botonAgregar = document.getElementById("agregarBoton");
-
-        botonAgregar.addEventListener("click", agregarNuevoBoton);
     </script>
+    
 </body>
 </html>
