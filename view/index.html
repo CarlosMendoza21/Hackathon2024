@@ -56,15 +56,24 @@
         }
 
         button.active {
-            background-color: #75dbad; /* Cambiar este color a tu sombreado deseado */
+            background-color: #db9075; /* Cambiar este color a tu sombreado deseado */
         }
 
         #columnas {
             column-count: 3;
+            align-items: center;
+
         }
         img{
-            max-width: 100%; /* Establece el ancho máximo de la imagen al 100% del contenedor */
+            max-width: 50%; /* Establece el ancho máximo de la imagen al 100% del contenedor */
             height: auto;
+        }
+        #imageContainer{
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+                align-items: center; /* Centra verticalmente */
+            align-items: center;
+            max-width: 50%;
         }
     </style>
 </head>
@@ -79,14 +88,29 @@
     <div>
         <h2>Tipo de peso</h2>
         <div id="columnas">
-            <div>            
-                <img src="https://images.vexels.com/media/users/3/159288/isolated/preview/77a601fa03103a09ed5bce394a8ff971-ilustracion-de-plumas.png">
+            <div id="imageContainer">            
+                <img src="https://cdn-icons-png.flaticon.com/512/93/93365.png">
             </div>
             <button name="Peso">Peso 1</button>
-            <button name="Peso">Peso 2</button>
-            <button name="Peso">Peso 3</button>
+            <div id="imageContainer">            
+                <img src="https://cdn-icons-png.flaticon.com/512/38/38464.png">
+            </div>
             <button name="Peso">Peso 4</button>
+            <div id="imageContainer">            
+                <img src="https://cdn-icons-png.flaticon.com/512/166/166745.png">
+            </div>
+            <button name="Peso">Peso 2</button>
+            <div id="imageContainer">            
+                <img src="https://cdn-icons-png.flaticon.com/512/427/427560.png">
+            </div>
             <button name="Peso">Peso 5</button>
+            <div id="imageContainer">            
+                <img src="https://cdn-icons-png.flaticon.com/512/5100/5100174.png">
+            </div>
+            <button name="Peso">Peso 3</button>
+            <div id="imageContainer">            
+                <img src="https://cdn-icons-png.flaticon.com/512/4971/4971976.png">
+            </div>
             <button name="Peso">Peso 6</button>
         </div>
     </div>
@@ -95,13 +119,6 @@
         <h2>Tamaño de empaque</h2>
         <div id="contenedorBotones">
             
-        </div>
-    </div>
-
-    <div>
-        <h2>Escaneo de paquetes</h2>
-        <div>
-            <button>Paquete 1</button>
         </div>
     </div>
 
