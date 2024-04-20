@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>Interfaz Paquetes Mexico</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Registro de Paquetes</h1>
+        </nav>
+    </header> 
+    <!-- Contenido -->
+    <div>
+        <h2>Tipo de paquetes</h2>
+        <div>
+            <button name="tamano">Tamaño 1</button>
+            <button name="tamano">Tamaño 2</button>
+            <button name="tamano">Tamaño 3</button>
+            <button name="tamano">Tamaño 4</button>
+            <button name="tamano">Tamaño 5</button>
+        </div>
+    </div>
+    <div>
+        <h2>Tipo de peso</h2>
+        <div id="contenedorBotones">
+            <!-- Aquí se agregarán los botones de peso dinámicamente -->
+        </div>
+    </div>
+    <div>
+        <h2>Escaneo de paquetes</h2>
+        <div>
+            <button>Paquete 1</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h1>Registro de Paquetes</h1>
+        <p>Este es el footer</p>
+    </footer>
+
+    <button >Agregar otro botón</button>
+
+    <script>
+        function agregarNuevoBoton() {
+            var nuevoBoton = document.createElement("button");
+            nuevoBoton.innerHTML = "¡Nuevo botón!";
+            nuevoBoton.setAttribute("class", "nuevoBotonClase");
+            var contenedor = document.getElementById("contenedorBotones");
+            contenedor.appendChild(nuevoBoton);
+        }
+
+        var botonAgregar = document.getElementsByClassName("seleccionBoton");
+
+        botonAgregar.addEventListener("click", agregarNuevoBoton);
+    </script>
+</body>
+</html>

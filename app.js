@@ -10,7 +10,7 @@ const { paqueteModel } = require('./models');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'main.html'));
+  res.sendFile(path.join(__dirname, 'view', 'index.html'));
 });
 
 const port = 27017;
