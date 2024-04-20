@@ -91,27 +91,27 @@
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/93/93365.png">
             </div>
-            <button name="Peso">Peso 1</button>
+            <button id="peso1">Peso 1</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/38/38464.png">
             </div>
-            <button name="Peso">Peso 4</button>
+            <button id="peso4">Peso 4</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/166/166745.png">
             </div>
-            <button name="Peso">Peso 2</button>
+            <button id="peso2">Peso 2</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/427/427560.png">
             </div>
-            <button name="Peso">Peso 5</button>
+            <button id="peso5">Peso 5</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/5100/5100174.png">
             </div>
-            <button name="Peso">Peso 3</button>
+            <button id="peso3">Peso 3</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/4971/4971976.png">
             </div>
-            <button name="Peso">Peso 6</button>
+            <button id="peso6">Peso 6</button>
         </div>
     </div>
     
@@ -122,35 +122,23 @@
         </div>
     </div>
 
-    <button id="agregarBoton">Agregar otro botón</button>
-
     <script>
-        // Obtener todos los botones
-        const buttons = document.querySelectorAll('button[name="Peso"]');
-
-        // Agregar un event listener a cada botón
+        const buttons = document.querySelectorAll('button[id^="peso"]');
+        const contenedorBotones = document.getElementById('contenedorBotones');
+    
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-                // Eliminar la clase 'active' de todos los botones
-                buttons.forEach(button => {
-                    button.classList.remove('active');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
                 });
-                // Agregar la clase 'active' solo al botón clickeado
                 button.classList.add('active');
+                const nuevoBoton = document.createElement('button');
+               
+                nuevoBoton.textContent = 'Nuevo botón';
+                contenedorBotones.appendChild(nuevoBoton);
             });
         });
-
-        function agregarNuevoBoton() {
-            var nuevoBoton = document.createElement("button");
-            nuevoBoton.innerHTML = "¡Nuevo botón!";
-            nuevoBoton.setAttribute("class", "nuevoBotonClase");
-            var contenedor = document.getElementById("contenedorBotones");
-            contenedor.appendChild(nuevoBoton);
-        }
-
-        var botonAgregar = document.getElementById("agregarBoton");
-
-        botonAgregar.addEventListener("click", agregarNuevoBoton);
     </script>
+    
 </body>
 </html>
