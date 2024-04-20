@@ -3,8 +3,8 @@ const { paqueteSchema, transportesSchema, pedidosSchema, enviossSchema } = requi
 
 const paqueteModel = mongoose.model('paquete', paqueteSchema);
 const transportesModel = mongoose.model('transportes', transportesSchema);
-const pedidosModel = mongoose.model('paquete', pedidosSchema);
-const enviosModel = mongoose.model('transportes', enviossSchema);
+const pedidosModel = mongoose.model('pedidos', pedidosSchema);
+const enviosModel = mongoose.model('envios', enviossSchema);
 
 
 module.exports = {

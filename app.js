@@ -4,8 +4,9 @@ const path = require('path');
 const app = express();
 
 const mongoose = require('mongoose');
+const { transportesModel,paqueteModel,enviosModel,pedidosModel } = require('./models');
 const uri = 'mongodb://localhost:27017/logistica';
-const { paqueteModel } = require('./models');
+
 
 app.use(express.static('public'));
 
@@ -99,7 +100,7 @@ app.post('/transportes', async (req, res) => {
     if (!name || !age) {
       return res.status(400).json({ message: 'Bad request, name or age not found' });
     }
-    const paquete = new paqueteModel({
+    const transportes = new transportesModel({
       tipo,
       peso_gr,
       tamanio
