@@ -24,7 +24,7 @@ app.get('/qr', (req, res) => {
   res.sendFile(path.join(__dirname, 'view', 'qr.html'));
 });
 
-const port = 3000;
+const port = 3010;
 
 app.get('/paquete', async (req, res) => {
   try {
@@ -162,35 +162,45 @@ app.post('/nuevo-pedido', async (req, res) => {
 });
 
 app.post('/procesar-qr', async (req, res) => {
-  const { _id, nombre_cliente, ciudad_destino, telefono, tipo_paquete, estado } = req.body;
-
   try {
-      await client.connect();
-      const db = client.db("logistica");
-
-      // Buscar en la colección 'envio' por 'ciudad_destino'
-      const envio = await db.collection('envio').findOne({ ciudad_destino: ciudad_destino });
-
-      if (envio) {
-          // Si se encuentra un envío con la misma ciudad_destino, actualizar el documento
-          await db.collection('envio').updateOne(
-              { _id: envio._id },
-              { $push: { pedidos: _id } }
-          );
-
-          res.status(200).send({ message: 'Pedido asociado con éxito', envioId: envio._id });
-      } else {
-          res.status(404).send({ message: 'No se encontró un envío con la ciudad de destino especificada' });
-      }
+     const { _id, ciudad_destino } = req.body; // Extraer el _id y la ciudad_destino del cuerpo de la solicitud
+ 
+     // Crear una expresión regular para buscar la ciudad_destino dentro de ciudad_de
+     const regex = new RegExp(ciudad_destino, 'i'); // 'i' para ignorar mayúsculas y minúsculas
+ 
+     // Imprimir la ciudad_destino y la expresión regular para ver qué se está comparando
+     console.log(`Buscando documentos donde 'ciudad_de' contenga: ${ciudad_destino}`);
+     console.log(`Expresión regular utilizada: ${regex}`);
+ 
+     // Buscar en la colección 'envio' un documento cuya 'ciudad_de' contenga 'ciudad_destino'
+     const envio = await Envio.findOne({ ciudad_de: { $regex: regex } });
+ 
+     if (!envio) {
+       return res.status(404).json({ message: 'No se encontró un envío para la ciudad destino especificada.' });
+     }
+ 
+     // Agregar el '_id' del código QR al mapa 'pedidos'
+     envio.pedidos.set(_id, _id);
+ 
+     // Guardar el documento actualizado
+     await envio.save();
+ 
+     res.status(200).json({ message: 'El _id del código QR ha sido agregado al envío correspondiente.', envio });
   } catch (error) {
-      res.status(500).send({ message: 'Error al procesar el QR', error });
-  } finally {
-      await client.close();
+     console.error('Error al procesar el código QR:', error);
+     res.status(500).json({ message: 'Error interno del servidor.' });
   }
+ });
+ 
+
+// Asegúrate de tener una ruta para iniciar el servidor
+app.listen(3012, () => {
+ console.log('Servidor corriendo en http://localhost:3000');
 });
 
 
-app.listen(process.env.PORT || 3001, () => {
+
+app.listen(process.env.PORT || 30011, () => {
   console.log("Server is running......");
 });
 

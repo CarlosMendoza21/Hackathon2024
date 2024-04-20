@@ -5,10 +5,18 @@ use("logistica")
 db.envio.insertMany([
     {
         transporte: "transporte 1",
-        ciudad_destino: "Querétaro",
+        ciudad_de: "Querétaro",
         pedidos:
         {
             1: "6623b36d18865c1265d31c6e"
+        }
+    },
+    {
+        transporte: "transporte 2",
+        ciudad_de: "qro",
+        pedidos:
+        {
+            1: "6623b36d18865c1265d31c6f"
         }
     }
 ])
