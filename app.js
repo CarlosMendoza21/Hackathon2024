@@ -22,7 +22,7 @@ app.get('/qr', (req, res) => {
   res.sendFile(path.join(__dirname, 'view', 'qr.html'));
 });
 
-const port = 27017;
+const port = 3000;
 
 app.get('/paquete', async (req, res) => {
   try {
@@ -108,6 +108,22 @@ app.post('/transportes', async (req, res) => {
 
     const save = await author.save();
     return res.status(201).json({ paquete: save });
+  } catch (error) {
+    console.log('Error', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.get('/envios', async (req, res) => {
+  try {
+    const envios = req.body?._id([
+      {
+        $find:{
+          _id : "envios"
+        }
+      }
+    ]);
+    return res.json({ envios });
   } catch (error) {
     console.log('Error', error);
     return res.status(500).json({ message: 'Internal server error' });
