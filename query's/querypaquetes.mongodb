@@ -4,15 +4,52 @@ db.createCollection("paquete")
 use("logistica")
 db.paquete.insertMany([
     {
-        peso_gr: 1000,
-        altura_cm: 10,
-        ancho_cm: 15,
-        largo_cm: 25
+        tipo: "sobre",
+        peso_maximo_kg: 1,
+        tamanio:
+        {
+            ancho_maximo_cm: 28,
+            largo_maximo_cm: 35
+        }
     },
     {
-        peso_gr: 789,
-        altura_cm: 9,
-        ancho_cm: 12,
-        largo_cm: 22
+        tipo: "mini",
+        peso_maximo_kg: 15,
+        tamanio:
+        {
+            ancho_maximo_cm: 30,
+            largo_maximo_cm: 30,
+            altura_maximo_cm: 30
+        }
+    },
+    {
+        tipo: "chico",
+        peso_maximo_kg: 30,
+        tamanio:
+        {
+            ancho_maximo_cm: 40,
+            largo_maximo_cm: 60,
+            altura_maximo_cm: 30
+        }
+    },
+    {
+        tipo: "mediano",
+        peso_maximo_kg: 50,
+        tamanio:
+        {
+            ancho_maximo_cm: 60,
+            largo_maximo_cm: 80,
+            altura_maximo_cm: 40
+        }
+    },
+    {
+        tipo: "grande",
+        peso_maximo_kg: 70,
+        tamanio:
+        {
+            ancho_maximo_cm: 80,
+            largo_maximo_cm: 100,
+            altura_maximo_cm: 50
+        }
     }
 ])
