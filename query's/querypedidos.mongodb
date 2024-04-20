@@ -1,0 +1,41 @@
+use("logistica")
+db.createCollection("pedido")
+
+use("logistica")
+db.pedido.insertMany([
+    {
+        nombre_cliente: "Juan Peréz",
+        ciudad_destino: "Querétaro",
+        telefono: 4428526655,
+        tipo_paquete: "chico",
+        estado: "almacén"
+    },
+    {
+        nombre_cliente: "Juan López",
+        ciudad_destino: "Querétaro",
+        telefono: 4426654455,
+        tipo_paquete: "mini",
+        estado: "almacén"
+    },
+    {
+        nombre_cliente: "Pedro Chávez",
+        ciudad_destino: "Querétaro",
+        telefono: 4426596653,
+        tipo_paquete: "sobre",
+        estado: "almacén"
+    },
+    {
+        nombre_cliente: "Oscar Rámirez",
+        ciudad_destino: "CDMX",
+        telefono: 5545862314,
+        tipo_paquete: "mediano",
+        estado: "enviado"
+    },
+    {
+        nombre_cliente: "Braulio Guevara",
+        ciudad_destino: "CDMX",
+        telefono: 5548568987,
+        tipo_paquete: "grande",
+        estado: "enviado"
+    }
+])
