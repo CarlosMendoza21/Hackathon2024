@@ -135,6 +135,17 @@
             <div id="contenedorBotonesTamanio"></div>
         
         </div>
+        <div>
+            <label for="nombreCliente">Nombre del cliente:</label>
+            <input type="text" id="nombreCliente" name="nombreCliente">
+            <label for="ciudadDestino">Ciudad de destino:</label>
+            <input type="text" id="ciudadDestino" name="ciudadDestino">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono">
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado">
+        </div>
+        
         
     <button id="botonConfirmar">Confirmar registro</button>
     
@@ -142,26 +153,6 @@
 
 <script>
     
-
-    /*const buttons = document.querySelectorAll('button[id^="peso"]');
-    const contenedorBotones = document.getElementById('contenedorBotones');
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-            button.classList.add('active');
-            const nuevoBoton = document.createElement('button');
-           
-            nuevoBoton.textContent = 'Nuevo botón';
-            contenedorBotones.appendChild(nuevoBoton);
-        });
-
-    });*/
-
-    // Definir los tipos de paquetes y sus restricciones
-
 
     const paquetes = {
         sobre: { peso_maximo_kg: 1, tamanio: { ancho_maximo_cm: 28, largo_maximo_cm: 35 } },
@@ -173,20 +164,27 @@
     };
 
     function actualizarTamanios(pesoSeleccionado) {
-        const contenedorTamanio = document.getElementById('contenedorBotonesTamanio');
-        contenedorTamanio.innerHTML = ''; // Limpiar el contenedor
+    const contenedorTamanio = document.getElementById('contenedorBotonesTamanio');
+    contenedorTamanio.innerHTML = ''; // Limpiar el contenedor
 
-        const paquetesCompatibles = Object.keys(paquetes).filter(tipo => paquetes[tipo].peso_maximo_kg >= pesoSeleccionado);
-    
-      
+    const paquetesCompatibles = Object.keys(paquetes).filter(tipo => paquetes[tipo].peso_maximo_kg >= pesoSeleccionado);
 
-        // Crear y añadir botones para los paquetes compatibles
-        paquetesCompatibles.forEach(tipo => {
-            const botonTamanio = document.createElement('button');
-            botonTamanio.textContent = tipo;
-            contenedorTamanio.appendChild(botonTamanio);
+    // Crear y añadir botones para los paquetes compatibles
+    paquetesCompatibles.forEach(tipo => {
+        const botonTamanio = document.createElement('button');
+        botonTamanio.textContent = tipo;
+        botonTamanio.setAttribute('data-tipo-paquete', tipo); // Asignar el atributo data-tipo-paquete
+        botonTamanio.addEventListener('click', () => {
+            // Aquí puedes añadir la lógica para manejar la selección de tamaño
+            console.log(`Tipo de paquete seleccionado: ${tipo}`);
+            // Actualizar el botón activo
+            document.querySelectorAll('#contenedorBotonesTamanio button').forEach(btn => btn.classList.remove('active'));
+            botonTamanio.classList.add('active');
         });
-    }
+        contenedorTamanio.appendChild(botonTamanio);
+    });
+}
+
 
     // Evento de clic para los botones de peso
     document.querySelectorAll('#columnasPeso button').forEach(button => {
@@ -196,6 +194,35 @@
             actualizarTamanios(pesoSeleccionado);
         });
     });
+
+    document.getElementById('botonConfirmar').addEventListener('click', async () => {
+    const nombreCliente = document.getElementById('nombreCliente').value;
+    const ciudadDestino = document.getElementById('ciudadDestino').value;
+    const telefono = document.getElementById('telefono').value;
+    const tipoPaquete = document.querySelector('#contenedorBotonesTamanio button.active').dataset.tipoPaquete; // Asumiendo que el botón activo tiene el tipo de paquete seleccionado
+    const estado = document.getElementById('estado').value;
+
+    try {
+        const response = await fetch('/nuevo-pedido', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nombreCliente, ciudadDestino, telefono, tipoPaquete, estado }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            // Aquí puedes manejar la respuesta exitosa, por ejemplo, mostrando un mensaje de éxito
+        } else {
+            console.error('Error al crear el pedido');
+        }
+    } catch (error) {
+        console.error('Error al enviar el pedido:', error);
+    }
+});
+
 
 
     const Qrcode = require('./qr/create_qr');

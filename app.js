@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
-
 const app = express();
-
 const mongoose = require('mongoose');
 const { transportesModel,paqueteModel,enviosModel,pedidosModel } = require('./models');
 const uri = 'mongodb://localhost:27017/logistica';
+const { MongoClient } = require('mongodb');
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
+app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -127,6 +128,28 @@ app.get('/envios', async (req, res) => {
   } catch (error) {
     console.log('Error', error);
     return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.post('/nuevo-pedido', async (req, res) => {
+  const { nombreCliente, ciudadDestino, telefono, tipoPaquete, estado } = req.body;
+
+  try {
+      await client.connect();
+      const db = client.db("logistica");
+      const result = await db.collection('pedido').insertOne({
+          nombre_cliente: nombreCliente,
+          ciudad_destino: ciudadDestino,
+          telefono: parseInt(telefono),
+          tipo_paquete: tipoPaquete,
+          estado: estado
+      });
+
+      res.status(200).send({ message: 'Pedido creado con éxito', data: result.ops[0] });
+  } catch (error) {
+      res.status(500).send({ message: 'Error al crear el pedido', error });
+  } finally {
+      await client.close();
   }
 });
 
