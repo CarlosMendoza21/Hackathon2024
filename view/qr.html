@@ -5,26 +5,41 @@
     <title>Leer QR</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family:  "Josefin Sans", sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #FECB00;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
-        #your-qr-result {
-            text-align: center;
+        h1, h2 {
             margin-top: 20px;
-        }
-        h1 {
             text-align: center;
+            color: #333; 
         }
-        #my-qr-reader {
-            width: 500px;
-            margin: 20px auto;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        div {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra */
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.active {
+            background-color: #db9075; /* Cambiar este color a tu sombreado deseado */
         }
     </style>
 </head>
@@ -39,7 +54,7 @@
         function domReady(fn) {
             if (document.readyState === "complete" || document.readyState === "interactive") {
                 setTimeout(fn, 1);
-            } else {
+            } else {    
                 document.addEventListener("DOMContentLoaded", fn);
             }
         }
@@ -54,8 +69,6 @@
                     lastResult = decodeText;
 
                     //alert("Your QR is: " + decodeText, decodeResult);
-
-
 
                     myqr.innerHTML = `Los datos son: ${decodeText}`; //${countResults}: por si acaso
                 }
