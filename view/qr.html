@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leer QR</title>
     <style>
         body {
-            font-family:  "Josefin Sans", sans-serif;
+            font-family: "Josefin Sans", sans-serif;
             margin: 0;
             padding: 0;
             background-color: #FECB00;
@@ -13,18 +14,18 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
-        h1, h2 {
+        h1 {
             margin-top: 20px;
             text-align: center;
             color: #333; 
         }
-        div {
+        .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra */
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px; 
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
             margin-bottom: 20px;
         }
         button {
@@ -39,42 +40,45 @@
             cursor: pointer;
         }
         button.active {
-            background-color: #db9075; /* Cambiar este color a tu sombreado deseado */
+            background-color: #db9075; 
         }
     </style>
 </head>
 <body>
     <div id="your-qr-result"></div>
     <h1>Scan QR html</h1>
-    <div id="my-qr-reader"></div>
+    <div class="container">
+        <div id="my-qr-reader" style="width: 100%;"></div>
+    </div>
 
     <script src="https://unpkg.com/html5-qrcode"></script>
 
     <script>
-        function domReady(fn) {
-            if (document.readyState === "complete" || document.readyState === "interactive") {
-                setTimeout(fn, 1);
-            } else {    
-                document.addEventListener("DOMContentLoaded", fn);
+        function domReady(fn){
+            if(document.readyState === "complete" || document.readyState === "interactive" )
+            {
+                setTimeout(fn,1)
+            }else{
+                document.addEventListener("DOMContentLoaded", fn)
             }
         }
 
-        domReady(function() {
-            var myqr = document.getElementById('your-qr-result');
-            var lastResult, countResults = 0;
+        domReady(function(){
+            var myqr = document.getElementById('your-qr-result')    
+            var lastResult,countResults = 0;
 
-            function onScanSuccess(decodeText, decodeResult) {
-                if (decodeText !== lastResult) {
+            function onScanSuccess(decodeText, decodeResult){
+                if(decodeText !== lastResult){
                     ++countResults;
                     lastResult = decodeText;
 
-                    //alert("Your QR is: " + decodeText, decodeResult);
+                    //alert("You QR is : " + decodeText, decodeResult)
 
-                    myqr.innerHTML = `Los datos son: ${decodeText}`; //${countResults}: por si acaso
+                    myqr.innerHTML = `${decodeText}`; // you scan ${countResults} : por si acaso
                 }
             }
             var htmlScanner = new Html5QrcodeScanner(
-                "my-qr-reader", { fps: 10, qrbox: 250 });
+                "my-qr-reader", { fps: 10 });
 
             htmlScanner.render(onScanSuccess);
         });
