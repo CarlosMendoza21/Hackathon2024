@@ -32,30 +32,77 @@ app.get('/paquete', async (req, res) => {
 
 app.post('/paquete', async (req, res) => {
   try {
+    const tipo = req.body?.tipo;
     const peso_gr = req.body?.peso;
-    const altura_cm = req.body?.altura;
-    const ancho_cm = req.body?.ancho;
-    const largo_cm = req.body?.largo;
+   //const altura_cm = req.body?.altura;
+   const tamanio = {
+      ancho_cm : req.body?.ancho,
+      largo_cm : req.body?.largo
+    }
+    
 
 
     if (!name || !age) {
       return res.status(400).json({ message: 'Bad request, name or age not found' });
     }
     const paquete = new paqueteModel({
+      tipo,
       peso_gr,
-      altura_cm,
-      ancho_cm,
-      largo_cm
+      tamanio
     });
 
     const save = await author.save();
-    return res.status(201).json({ author: save });
+    return res.status(201).json({ paquete: save });
   } catch (error) {
     console.log('Error', error);
     return res.status(500).json({ message: 'Internal server error' });
   }
 });
 
+app.get('/transportes', async (req, res) => {
+  try {
+    const transportes = req.body?._id([
+      {
+        $find:{
+          _id : "transportes"
+        }
+      }
+    ]);
+    return res.json({ transportes });
+  } catch (error) {
+    console.log('Error', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.post('/transportes', async (req, res) => {
+  try {
+    const tipo = req.body?.tipo;
+    const peso_gr = req.body?.peso;
+   //const altura_cm = req.body?.altura;
+   const tamanio = {
+      ancho_cm : req.body?.ancho,
+      largo_cm : req.body?.largo
+    }
+    
+
+
+    if (!name || !age) {
+      return res.status(400).json({ message: 'Bad request, name or age not found' });
+    }
+    const paquete = new paqueteModel({
+      tipo,
+      peso_gr,
+      tamanio
+    });
+
+    const save = await author.save();
+    return res.status(201).json({ paquete: save });
+  } catch (error) {
+    console.log('Error', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
 app.listen(process.env.PORT || 3000, () => {

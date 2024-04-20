@@ -1,19 +1,34 @@
 const mongoose = require('mongoose');
 
 const paqueteSchema = new mongoose.Schema({
-  peso_gr: {
+  tipo: {
+    type: String,
+    required: true
+  },
+  peso_maximo: {
     type: Number,
     required: true
   },
-  altura_cm: {
+  tamanio:{
+    type: Object,
+    required: true
+  }
+});
+
+const transportesSchema = new mongoose.Schema({
+  peso_soportado_kg: {
     type: Number,
     required: true
   },
-  ancho_cm: {
+  altura_maxima_m: {
     type: Number,
     required: true
   },
-  largo_cm:{
+  ancho_maximo_m:{
+    type: Number,
+    required: true
+  },
+  largo_maximo_m:{
     type: Number,
     required: true
   }
