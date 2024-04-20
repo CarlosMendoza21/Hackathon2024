@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Leer QR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        #your-qr-result {
+            text-align: center;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #my-qr-reader {
+            width: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="your-qr-result"></div>
+    <h1>Scan QR html</h1>
+    <div id="my-qr-reader"></div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+    <script>
+        function domReady(fn) {
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+        }
+
+        domReady(function() {
+            var myqr = document.getElementById('your-qr-result');
+            var lastResult, countResults = 0;
+
+            function onScanSuccess(decodeText, decodeResult) {
+                if (decodeText !== lastResult) {
+                    ++countResults;
+                    lastResult = decodeText;
+
+                    //alert("Your QR is: " + decodeText, decodeResult);
+
+
+
+                    myqr.innerHTML = `Los datos son: ${decodeText}`; //${countResults}: por si acaso
+                }
+            }
+            var htmlScanner = new Html5QrcodeScanner(
+                "my-qr-reader", { fps: 10, qrbox: 250 });
+
+            htmlScanner.render(onScanSuccess);
+        });
+    </script>
+</body>
+</html>
