@@ -84,34 +84,34 @@
         </nav>
     </header> 
 
-    <!-- Contenido -->
+   
     <div>
         <h2>Tipo de peso</h2>
         <div id="columnas">
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/93/93365.png">
             </div>
-            <button name="Peso">Peso 1</button>
+            <button id="buttonPeso">Peso 1</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/38/38464.png">
             </div>
-            <button name="Peso">Peso 4</button>
+            <button id="buttonPeso" >Peso 4</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/166/166745.png">
             </div>
-            <button name="Peso">Peso 2</button>
+            <button id="buttonPeso">Peso 2</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/427/427560.png">
             </div>
-            <button name="Peso">Peso 5</button>
+            <button id="buttonPeso" >Peso 5</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/5100/5100174.png">
             </div>
-            <button name="Peso">Peso 3</button>
+            <button id="buttonPeso">Peso 3</button>
             <div id="imageContainer">            
                 <img src="https://cdn-icons-png.flaticon.com/512/4971/4971976.png">
             </div>
-            <button name="Peso">Peso 6</button>
+            <button name="Peso" id="buttonPeso">Peso 6</button>
         </div>
     </div>
     
@@ -125,17 +125,16 @@
     <button id="agregarBoton">Agregar otro botón</button>
 
     <script>
-        // Obtener todos los botones
+
         const buttons = document.querySelectorAll('button[name="Peso"]');
 
-        // Agregar un event listener a cada botón
+
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-                // Eliminar la clase 'active' de todos los botones
+ 
                 buttons.forEach(button => {
                     button.classList.remove('active');
                 });
-                // Agregar la clase 'active' solo al botón clickeado
                 button.classList.add('active');
             });
         });
